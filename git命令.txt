@@ -1,0 +1,6 @@
+git init
+git remote add origin 仓库
+git pull --rebase origin master 
+git add
+git commit
+git push -u origin master 
