@@ -4,3 +4,5 @@ git pull --rebase origin master
 git add
 git commit
 git push -u origin master 
+
+git rm 文件
