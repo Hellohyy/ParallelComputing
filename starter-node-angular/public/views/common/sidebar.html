@@ -1,0 +1,189 @@
+
+    ﻿<div class="center-block" style="background-color:#607d8b"><!-- //左边菜单栏 -->
+    <ul class="nav sidebar-menu text-center" style="margin-top: 40px;">
+       <!--  <li ui-sref-active="active">
+            <a ui-sref="app.functionMenu" style="height:60px;">
+                <img src="./assets/img/avatars/actual.png" style="padding-top: 5px"> 功能菜单
+            </a>
+        </li> -->
+      <!--   <li ui-sref-active="active">
+            <a ui-sref="app.homePage" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/duty.png" style="width:40px;height:40px"> 首页
+                  
+                </div>
+            </a>
+        </li> -->
+        <li ui-sref-active="active">
+            <a ui-sref="app.homePage" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px;">
+                    <img src="./assets/img/avatars/1554888358(1).png" style="width:50px;height:50px;margin-left:-30px"> 首页
+                </div>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.experimentalDuty" style="height:80px">
+                 <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                     <img src="./assets/img/avatars/duty.png" style="width:40px;height:40px"> 
+                     <span ng-show="{{storage.authority}}==0">实验任务</span>
+                     <span ng-show="{{storage.authority}}==1">实验课程</span>
+                     <span ng-show="{{storage.authority}}==2">教师课程</span>
+                </div>
+            <!-- <img src="./assets/img/avatars/falsereport.png" style="padding-top: 5px;margin-top:20px">  -->
+                <!-- <div class="MenuText" style="margin-top:20px">
+                    <span class="glyphicon glyphicon-indent-left" aria-hidden="true" style="width:40px;height:40px">
+                    </span> 实验任务
+                </div> -->
+            </a>
+        </li>
+        <li ui-sref-active="active" ng-show="{{storage.authority}}==1 || {{storage.authority}}==2">
+            <a ui-sref="app.commonCourse" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/commonDuty.png" style="width:40px;height:40px"> 公共课程
+                </div>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.clusterInstallation" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/clusterInstallation.jpg" style="width:40px;height:40px"> 集群安装
+                </div>
+           
+            </a>
+        </li>
+        <!-- <li ui-sref-active="select" ng-show="{{storage.authority}}==1">
+            <a ui-sref="app.addCourse" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/Product_documentation_256px_557024_easyicon.net.png" style="width:40px;height:40px"> 课程添加
+                </div>
+            </a>
+        </li> -->
+        <!-- 当用户的权限为1时代表老师，老师拥有添加课程的权限 -->
+     <!--    <li ui-sref-active="select" ng-show="{{storage.authority}}==1">
+            <a ui-sref="app.contentManage" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/view_pim_summary_256px_540217_easyicon.net.png" style="width:40px;height:40px"> 实验添加
+                </div>
+            </a>
+        </li> -->
+       <!--  <li ui-sref-active="select" ng-show="{{storage.authority}}==1">
+            <a ui-sref="app.updExp" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/work_ruler_96px_1060297_easyicon.net.png" style="width:40px;height:40px"> 实验修改
+                </div>
+            </a>
+        </li> -->
+        <li ui-sref-active="active" ng-show="{{storage.authority}}==0">
+            <a ui-sref="app.addExpReport" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/edit-file.png" style="width:40px;height:40px"> 实验报告
+                </div>
+            </a>
+        </li>
+        <li ui-sref-active="active" ng-show="{{storage.authority}}==0">
+            <a ui-sref="app.reportRecord" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/report.png" style="width:40px;height:40px"> 报告记录
+                </div>
+            </a>
+        </li>
+        <li ui-sref-active="active" ng-show="{{storage.authority}}==1">
+            <a ui-sref="app.reportManage" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/report.png" style="width:40px;height:40px"> 实验报告
+                </div>
+            </a>
+        </li>
+        <li ui-sref-active="active" ng-show="{{storage.authority}}==0 || {{storage.authority}}==1">
+            <a ui-sref="app.learningRecord" style="height:80px;">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/record.png" style="width:40px;height:40px"> 实验记录
+                </div>
+            </a>
+        </li>   
+        <li ui-sref-active="active" ng-show="{{storage.authority}}==1">
+            <a ui-sref="app.studentList" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/studentList.png" style="width:40px;height:40px"> 学生名单
+                </div>
+           
+            </a>
+        </li>
+        <!-- 当用户的权限为2时代表管理员，管理员拥有修改公共课程、班级管理的权限 -->    
+        <li ui-sref-active="active" ng-show="{{storage.authority}}==2">
+            <a ui-sref="app.classManage" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/classManage.png" style="width:40px;height:40px"> 班级管理
+                </div>
+            </a>
+        </li>
+        <!-- 当用户的权限为2时代表管理员，管理员可以查看老师的相关信息 -->    
+        <li ui-sref-active="active" ng-show="{{storage.authority}}==2">
+            <a ui-sref="app.teacherList" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/teacher.png" style="width:40px;height:40px"> 教师管理
+                </div>
+            </a>
+        </li>
+        
+        
+    <!--     <li ui-sref-active="active">
+            <a ui-sref="app.elective" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/choose_view_48px_17253_easyicon.net.png" style="width:40px;height:40px"> 选修课程
+                </div>
+
+            </a>
+        </li> -->
+    <!--     <li ui-sref-active="active">
+            <a ui-sref="app.onlineConsultant" style="height:80px">
+               <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/online_support_320.77586206897px_1211045_easyicon.net.png" style="width:40px;height:40px"> 在线咨询
+                </div>
+
+            </a>
+        </li> -->
+    <!--     <li ui-sref-active="active" ng-show="{{storage.authority}}==0">
+            <a ui-sref="app.onlineTest" style="height:80px">
+                <div class="siderbarText" style="margin-top:20px;font-size:16px">
+                    <img src="./assets/img/avatars/work_schedule_545px_1208240_easyicon.net.png" style="width:40px;height:40px"> 在线考试
+                </div>
+          
+            </a>
+        </li>
+        -->
+
+    </ul>
+     
+    <!-- /Sidebar Menu -->
+    </div>
+<!-- <div>
+    <div id="floatWindow" ng-show="{{storage.windowFlag}}" class="floatWindow" style="position:absolute;z-index:999;width:100%;margin-top: 60px">
+        
+            <div class="modal-preview">
+                <div class="modal modal-darkorange">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="">
+                            <div class="modal-header" style="background-color: #37474f;border:0px;border-radius: 5px 5px 0 0">
+                               
+                                <h4 class="modal-title" style="float:left;color:white;">正在运行</h4>
+                                <button style="margin-top:5px;font-weight:normal;font-size:12px;border:1px;float:right;border-radius: 8px;color:black" ng-click="closeVNC()">
+                                    关机
+                                </button>
+
+                            </div>
+                            <div class="modal-body" style="overflow-x:scroll">
+                                <span style="font-weight:normal;font-size:16px;color:#666">实验名称 : {{storage.expName}}</span>
+                                
+                            </div>
+                            <div class="modal-footer" style="background-color: #37474f;border:0px;border-radius: 0 0 5px 5px">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+</div>
+ -->

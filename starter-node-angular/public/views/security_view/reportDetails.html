@@ -1,0 +1,33 @@
+<div ng-controller="reportDetailsCtrl" ng-show="user_logout">
+    <div class="wrap" style="height:800px;background-color:#fff">
+        <div class="banner_wrap col-md-12 col-xs-12 col-lg-12">
+            <!-- <canvas id="nokey" style="width:1384px;height:200px"></canvas> -->
+            <div class="area">
+                <div class="banner clearfix">
+                    <div class="img_area fl col-md-4 col-xs-4 col-lg-4">
+                        <img class="col-md-12 col-xs-12 col-lg-12" ng-src={{expInfo.couPic}} alt="" style="padding-left:0px;margin-top:15px;margin-bottom:15px">
+                    </div>
+                    <div class="center course_infos fl col-md-7 col-xs-7 col-lg-7">
+                        <div class="title clearfix">
+                            <h2 class="fl">
+                                <span class="name">课程名称：{{expInfo.couName}}</span>
+                                <span style="font-size:16px;font-weight:normal;margin-top:10px;color:#666">实验名称：{{expInfo.expName}}</span>
+                                <br></br>
+                                <span style="font-size:16px;font-weight:normal;margin-top:10px;color:#666">学生：{{expInfo.stuName}}</span>
+                                <br></br>
+                                <span style="font-size:16px;font-weight:normal;margin-top:10px;color:#666" ng-show="{{expInfo.status}}==1">状态：已提交</span>
+                                <span style="font-size:16px;font-weight:normal;margin-top:10px;color:#666" ng-show="{{expInfo.status}}==0">状态：未提交</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div><hr style="margin:0px">
+                <div class="scene_lecture" style="">
+                    <!--p class="test_title" id="principle_0" name="#principle_1">实验报告</p-->
+                    <div class="guide_step" ng-bind-html='expInfo.reportText' style="font-size: 16px;height:600px;overflow-y:scroll">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,230 @@
+<div ng-controller="commonCourseCtrl" ng-show="user_logout">
+<!-- 公共课程添加 -->
+	<div class="well with-header with-footer">
+		<div class="header bordered-blueberry">
+			<span>公共课程</span>
+			<button class="addCourseButton" ng-show="{{storage.authority}}==2" ng-click="addCourseButton()" title="添加课程"><img src="assets/img/avatars/add_create_new_plus_positive_512px_1225528_easyicon.net.png"></button>
+		</div>
+		<div class="subject">
+		<div class="row subjectcon">
+			<ul class="clearfix">
+				<div id="commonDiv">
+					<li class="commonli hvr-pulse-grow col-md-3 col-sm-3 col-xs-3 col-lg-3" ng-repeat="commonCourse in commonCourses" style="">
+						<button ng-show="{{storage.authority}}==1" id="loadButton" style="" data-toggle="modal" data-target="#loadCourse">
+							<img ng-src="assets/img/avatars/download_599px_1229319_easyicon.net(1).png" style="" ng-click="loadCourse({{commonCourse.courseId}})">
+						</button>
+						<button id="hideDeleteButton" ng-show="{{storage.authority}}==2" style="margin-top:8px">
+							<img id="hideFlag" ng-src="{{commonCourse.hideLogo}}" ng-click="hideCourse({{commonCourse.courseId}})">
+							<img id="deleteFlag" ng-src="assets/img/avatars/delete.jpg" ng-click="deleteCourse({{commonCourse.courseId}})">
+						</button>
+						<a class="commonLink" target="_parent" ng-click="getCommonId({{commonCourse.courseId}},{{commonCourse.vncNotebook}})">
+							<div class="radius">
+								<div class="litop">
+									<img ng-show="{{commonCourse.hideShow}} == 1" class="commonPic" ng-src="{{commonCourse.coursePicture}}" alt="公共课程">
+									<span ng-show="{{commonCourse.hideShow}} == 0" style="font-size: 18px;color:gray;padding-top: 20px">该课程已隐藏！</span>
+								</div>
+							</div>
+						</a>
+								<div class="libottom">
+									<div class="libottomcon">
+										<div class="libottomtit" ng-href="experimentalContent.html"><b>{{commonCourse.courseName}}</b>
+										</div>
+										
+										<div class="hourInfo">
+	                                        <span class="hour" style="float:left">
+	                                        	<img ng-src="assets/img/avatars/expNum.png"><em style="color:#3f51b5" ng-init="0"> {{commonCourse.expNumber}}</em></span>课时
+	                                        <span ng-show="{{commonCourse.flag == 0}}" class="fr" style="float:right">
+	                                        	<span class="per">
+	                                        		<img ng-src="assets/img/avatars/User_512px_1178959_easyicon.net.png"><strong>{{commonCourse.currentTeacher}}老师</strong></span>
+	                                        </span>
+	                                        <span ng-show="{{commonCourse.flag == 1}}"class="fr" style="float:right" ng-click="updCommonCourse({{commonCourse.courseId}})">
+                                        	<span class="per">
+                                        		<img ng-src="assets/img/avatars/edit-file.png"><strong>修改</strong>
+                                        		<!-- <strong> {{storage.userName}}老师</strong> -->
+                                        	</span>
+                                        </span>
+	                                	</div>
+									</div>
+								</div>
+							
+					</li>
+				</div>
+			</ul>
+		</div>
+		</div>
+
+		<!-- 导入课程模态框 -->
+		<div class="modal fade" id="loadCourse" tabindex="-1" role="dialog" aria-labeledby="myModalLabel" aira-hiden="true">
+			<div class="modal-dialog">
+				<!-- <h>模态框</h> -->
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框的取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+						</button>
+						<h4 class="modal-title" id="mgModalLabel">导入全新课程或已有课程
+						</h4>
+					</div>
+					<!-- </div class="modal-body block-center">
+					</div> -->
+					<div class="modal-footer">
+						<button id="loadNewCourse" type="button" class="btn" style="" ng-click="loadNewCourse()">导入全新课程
+						</button>
+						<button id="loadExistCourse" type="button" class="btn" ng-click="loadExistCourse({{commonCourse.courseId}})" data-toggle="modal" data-target="#existCourse">导入已有课程
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 设置confirm确定与取消按钮提示框 -->
+		<div class="modal hide" id="confirmCommonModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true" style="z-index:9999;margin-top:120px">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeConfirm()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							公共课程设置
+						</h4>
+						
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">确定执行该操作？</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="confirmButton" type="button" class="btn" ng-click="confirmCommon()">确 定</button>
+						<button id="denyButton" type="button" class="btn" data-dismiss="modal" ng-click="closeConfirm()">取 消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 导入到现有课程 -->
+		<div class="modal fade" id="existCourse" tabindex="-1" role="dialog" aria-labeledby="myModalLabel" aria-hiden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+						</button>
+						<h4 class="modal-title" id="mgModalLabel">导入已有课程
+						</h4>
+					</div>
+					<div id="existCourseName" class="modal-body">
+						<label class="radio" ng-repeat="course in courses">
+							<input type="radio" name="radio" id="radio" value="{{course.courseId}}">
+							<span class="text">{{course.courseName}}</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="confirmButton" type="button" class="btn" ng-click="ensureLoad()">确定
+						</button>
+<!-- 						<button id="denyButton" type="button" class="btn" ng-click="closeModal()">取消
+ -->					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 设置公共课程成功提示框设置 -->
+		<div class="modal hide" id="commonCourseModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							公共课程设置
+						</h4>
+						<!-- /*<hr style="border-top:1px ridge #e75b8d;">*/ -->
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">公共课程设置成功！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal hide" id="commonCourseFailModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							公共课程设置
+						</h4>
+						<!-- /*<hr style="border-top:1px ridge #e75b8d;">*/ -->
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">公共课程设置失败！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 设置隐藏/显示按钮成功提示框设置 -->
+		<div class="modal hide" id="commonCourseFail" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							公共课程设置
+						</h4>
+						<!-- /*<hr style="border-top:1px ridge #e75b8d;">*/ -->
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">该公共课程已经导入过，不可重复导入！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 设置confirm确定与取消按钮提示框 -->
+		<div class="modal hide" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeConfirm()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程设置
+						</h4>
+						
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">确定执行该操作？</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="confirmButton" type="button" class="btn" ng-click="confirmDel()"> 确 定 </button>
+						<button id="denyButton" type="button" class="btn" data-dismiss="modal" ng-click="closeConfirm()"> 取 消 </button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

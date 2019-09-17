@@ -1,0 +1,232 @@
+<div ng-controller="experimentalContent" class="content clearfix">
+	<!-- 左侧栏 -->
+	<div id="left" class="sidebar ui-resizable fl" ng-class="sidebarState" ng-init="sidebarState='show'" style="margin-left: 0px; display: block;" ng-style="leftSidebar">
+		<!-- <a  class="sidebar_btn" href="javascript:;" ng-click="displayLeft()"></a> -->
+		<div style="overflow: hidden;">
+			<div>
+				<!-- 左侧标题栏 -->
+				<div class="sidebar_topbar topbar clearfix">
+					<div class="quit fl">
+						<a href="javascript:;" ng-click="quitCur()">退出</a>
+						<!-- ui-sref="app.experimentalDuty" ii-sref-opts="{reload:true}" -->
+					</div>
+					<div class="scene_name" ng-init="sectionName='章节标题'">
+						{{sectionName}}	
+					</div>
+				</div>
+				<!-- 左侧实验内容栏 -->
+				<div class="sidebar_content" style="height: calc(100vh - 36px);">
+					<!-- 左侧标签页栏 -->
+					<div class="tab_title clearfix">  
+						<a class="fl mt_guide" ng-class="tabShow1" ng-init="tabShow1='activeTab'" href="javascript:;" ng-click="showWho(1)"><span ng-class="tab_sec" ng-init="tab_sec='tab_sec_ac'"></span>目的和原理</a>
+						<a class="fl mt_steps" ng-class="tabShow2" ng-init="tabShow2='stunTab'" href="javascript:;" ng-click="showWho(2)"><span ng-class="tab_fir" ng-init="tab_fir='tab_fir_st'"></span>实验步骤</a>
+						<a class="fl mt_vnc" ng-class="tabShow3" ng-init="tabShow3='stunTab'" href="javascript:;" ng-click="showWho(3)"><span ng-class="tab_third" ng-init="tab_third='tab_third_st'"></span>虚拟机列表</a>
+					</div>
+					<!-- 左侧内容栏 -->
+					<div class="tab_content" style="height: calc(100vh - 93px);">
+						<!-- 目的和原理标签页 -->
+						<div id="guide" ng-class="show1" ng-init="show1='dataSee'" class="tab_mc scene_guide no_padding">
+							<div class="explain_content" tabindex="0" style="overflow: auto; outline: none;">
+								<div>
+									<div class="scene_lecture">
+										<p class="test_title" id="principle_0" name="#principle_0">实验目的</p>
+										<div class="guide_step">
+											<div class="lecture markdown-body">
+												<ul>
+													<div ng-bind-html='courseContentSteps'></div>
+												</ul>												
+											</div>
+										</div>
+									</div>
+									<div class="scene_lecture">
+										<p class="test_title" id="principle_1" name="#principle_1">实验原理</p>
+										<div class="guide_step" ng-bind-html='courseContentPrinciples' style="font-size: 16px;">	
+										</div>
+									</div>
+									<div class="scene_lecture">
+										<p class="test_title" id="principle_2" name="#principle_2">实验环境</p>
+										<div class="guide_step" ng-bind-html='courseContentEnvironments' style="font-size: 16px;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 实验步骤标签页 -->
+						<div id="steps" ng-class="show2" ng-init="show2='dataInvi'" class="tab_mc scene_steps no_padding">
+							<!-- 小标题跳转条 -->
+							<div class="step_btns">
+								<div class="btn_icons">
+									<div class="slider_wrapper">
+										<ul class="step_btn_lists" style="left: 0">
+											<li class="step_btn_item stunlist" ng-repeat="title in courseContentProceduresTitles" ng-click="displayProcedure(title,$index)" ng-init="myVar='title'" ng-class="{'focus': $index==focus}"></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- 实验内容界面 -->
+							<div class="step_content" style="overflow: auto;">
+								<!-- 步骤标题格式 -->
+								<div ng-switch on="isCurProcedure(myVar)">
+									<div ng-switch-when="true">
+										<!-- 步骤标题 -->
+										<div class="step_mt">
+											<span class="num">{{focus + 1}}</span>
+											<p class="step_title_txt">{{title}}</p>
+										</div>
+										<!-- 步骤内容 -->
+										<div class="step_mc" tabindex="1" style="overflow: hidden; outline: none;">
+											<div class="md_content markdown-body">
+												<div ng-bind-html='procedure'></div>
+											</div>
+										</div>		
+									</div>
+								</div>					
+							</div>
+						</div>
+						<!-- 虚拟机列表 -->
+						<div id="vnc_lists" ng-class="show3" ng-init="show3='dataInvi'" class="tab_mc scene_vnc">
+							<div class="operation_wrapper">
+								<!-- on off  disabled -->
+								<a href="javascript:;" class="vnc_btn off vnc_start_btn fl" id="vnc_start_btn" ng-click="launch_vnc()">
+									<span class="btn_img"></span>
+									<span class="tips" style="font-size: 15px;">启动所有虚拟机</span>
+								</a>
+								<a href="javascript:;" class="vnc_btn off vnc_stop_btn fl" id="vnc_stop_btn" ng-click="shutdown_vnc()">
+									<span class="btn_img"></span>
+									<span class="tips" style="font-size: 15px;">回收所有虚拟机</span>
+								</a>
+							</div>
+							<ul ng-show="{{hadoopFlag == 0}}" class="vnc_list" tabindex="3" style="overflow: hidden; outline: none;">
+								<li class="off vnc_item" data-id="0" data-name="操作机" ng-click="masterMachine()">
+									<div class="vnc_mt">
+										<span class="icon"></span>
+										<span class="vnc_name" style="font-size: 15px;">master</span>
+									</div>
+									<div class="vnc_mc clearfix">
+										<ol class="ip_lists fl"></ol>
+										<span class="status fr" ng-style="vncStateColor">{{vncState}}</span>
+									</div>
+								</li>
+								<li class="off vnc_item" data-id="0" data-name="操作机" ng-click="slave1Machine()" value="slave1">
+									<div class="vnc_mt">
+										<span class="icon"></span>
+										<span class="vnc_name" style="font-size: 15px;">slave1</span>
+									</div>
+									<div class="vnc_mc clearfix">
+										<ol class="ip_lists fl"></ol>
+										<span class="status fr" ng-style="vncStateColor">{{vncState}}</span>
+									</div>
+								</li>
+								<li class="off vnc_item" data-id="0" data-name="操作机" ng-click="slave2Machine()">
+									<div class="vnc_mt">
+										<span class="icon"></span>
+										<span class="vnc_name" style="font-size: 15px;">slave2</span>
+									</div>
+									<div class="vnc_mc clearfix">
+										<ol class="ip_lists fl"></ol>
+										<span class="status fr" ng-style="vncStateColor">{{vncState}}</span>
+									</div>
+								</li>
+								<li class="off vnc_item" data-id="0" data-name="操作机" ng-click="slave3Machine()">
+									<div class="vnc_mt">
+										<span class="icon"></span>
+										<span class="vnc_name" style="font-size: 15px;">slave3</span>
+									</div>
+									<div class="vnc_mc clearfix">
+										<ol class="ip_lists fl"></ol>
+										<span class="status fr" ng-style="vncStateColor">{{vncState}}</span>
+									</div>
+								</li>
+							</ul>
+							<ul ng-show="{{hadoopFlag == 1}}" class="vnc_list" tabindex="3" style="overflow: hidden; outline: none;">
+								<li class="off vnc_item" data-id="0" data-name="操作机" ng-click="masterMachine()">
+									<div class="vnc_mt">
+										<span class="icon"></span>
+										<span class="vnc_name" style="font-size: 15px;">操作机</span>
+									</div>
+									<div class="vnc_mc clearfix">
+										<ol class="ip_lists fl"></ol>
+										<span class="status fr" ng-style="vncStateColor">{{vncState}}</span>
+									</div>
+								</li>
+								<li class="off vnc_item" data-id="0" data-name="操作机" ng-click="masterMachine()">
+									<div class="vnc_mt">
+										<span class="icon"></span>
+										<span class="vnc_name" style="font-size: 15px;">操作机</span>
+									</div>
+									<div class="vnc_mc clearfix">
+										<ol class="ip_lists fl"></ol>
+										<span class="status fr" ng-style="vncStateColor">{{vncState}}</span>
+									</div>
+								</li>
+								<li class="off vnc_item" data-id="0" data-name="操作机" ng-click="masterMachine()">
+									<div class="vnc_mt">
+										<span class="icon"></span>
+										<span class="vnc_name" style="font-size: 15px;">操作机</span>
+									</div>
+									<div class="vnc_mc clearfix">
+										<ol class="ip_lists fl"></ol>
+										<span class="status fr" ng-style="vncStateColor">{{vncState}}</span>
+									</div>
+								</li>
+								<li class="off vnc_item" data-id="0" data-name="操作机" ng-click="masterMachine()">
+									<div class="vnc_mt">
+										<span class="icon"></span>
+										<span class="vnc_name" style="font-size: 15px;">操作机</span>
+									</div>
+									<div class="vnc_mc clearfix">
+										<ol class="ip_lists fl"></ol>
+										<span class="status fr" ng-style="vncStateColor">{{vncState}}</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<a class="sidebar_btn" href="javascript:;" ng-click="displayLeft()"></a>
+		<div id="dragmiddle" ng-style="cursorResize" class="ui-resizable-handle ui-resizable-e" style="z-index: 90;width: 10px;position: absolute;" ng-mousedown="onCanvasClicked($event)"></div>
+	</div>
+	<!-- 右侧栏 -->
+	<div id="app" ng-style="rightSidebar" class="main_content fl" style="max-width: 100vw; margin-left: 10px;">
+		<!-- 右侧标题栏 -->
+		<div class="vnc_topbar topbar">
+
+			<span class="clip-icon"><!----></span> 
+			<div class="countdown_wrapper  fr" style="color:white">
+				<img ng-src="assets/img/avatars/open.png" ng-click="launch_vnc()" data-toggle="modal" data-target="#floatWindow" style="padding:5px;width:40px;height:40px;border-radius: 50%">
+				<img ng-src="assets/img/avatars/close.png" ng-click="shutdown_vnc()" data-toggle="modal" data-target="#floatWindow" style="padding:5px;width:40px;height:40px;border-radius: 50%">
+				<i class="time_label">虚拟机启动时间</i>
+				<div id="user_count" class="countdown">
+					<span id="remain_hour" class="hours">{{clock.hour}}</span>:
+					<span id="remain_minute" class="minutes">{{clock.minute}}</span>:
+					<span id="remain_second" class="seconds">{{clock.second}}</span>
+				</div> 
+				<button id="add_time" data-scene-id="1" class="add_time"></button>
+			</div>
+		</div>
+		<!-- 右侧内容栏 -->
+		<div class="vnc_content">
+			<!-- 动画加载效果 -->
+			<div class="vnc_loadings" ng-if="vncLoading">
+				<img src="../../assets/img/contents/vnc_loading.gif" style="margin-left: -64px;margin-top: -64px;"></img>
+				<p class="txt_vnc_loadings" style="margin-left: -64px;">虚拟机启动中</p>
+			</div>
+			<!-- vnc界面 -->
+			<!-- <div style="width: 100%;height: 100%" id="vncMachinePa"> -->
+				<!-- <iframe ng-src="{{trustSrc(iframeURL)}}" style="width: 100%;height: 100%" id="masterMachine" ng-model="iframeURL" ng-change="iframeURL()">
+					
+				</iframe> -->
+				<!-- <iframe ng-src="{{trustSrc(slave1_vnc_url)}}" style="width: 100%;height: 100%" id="slave1Machine"></iframe>
+				<iframe ng-src="{{trustSrc(slave2_vnc_url)}}" style="width: 100%;height: 100%" id="slave2Machine"></iframe>
+				<iframe ng-src="{{trustSrc(slave3_vnc_url)}}" style="width: 100%;height: 100%" id="slave3Machine"></iframe> -->
+			<!-- </div> -->
+			<!-- <div style="width: 100%;height: 100%" id="secondMachineVNC">
+				<iframe ng-src="{{trustSrc(second_vnc_url)}}" style="width: 100%;height: 100%" id="vncMachine2"></iframe>
+			</div> -->
+		</div>
+	</div>
+
+	
+</div>

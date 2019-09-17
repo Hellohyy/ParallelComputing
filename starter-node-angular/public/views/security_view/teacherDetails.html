@@ -1,0 +1,82 @@
+<div ng-controller="teacherDetailsCtrl" >
+<!-- 老师信息 -->
+    
+    <div class="well with-header with-footer" style="overflow-y:scroll; height: auto;">
+        <div class="header bordered-blueberry" style="font-size:20px;" >
+            <span class="teacherDetails" style="text-align: center">教师详情</span>
+            <button title="返回上一页" class="return col-md-offset-10 col-lg-offset-10 col-xs-offset-10" style="border: none;background-color: transparent;" ng-click="backward()"><img src="assets/img/avatars/arrow_bold_backward.png" style="width:20px;height:20px;"></button>
+        </div>
+        <div style="margin-top: 40px">
+            <div class="col-lg-4 col-xlg-3 col-md-5" style="padding-right: 0px;padding-left: 0px;" >
+                <!-- Column -->
+                <div class="cards" style="width: 300px;" >
+                    <img class="card-img-top" src="../assets/images/profile-bg.jpg" alt="Card image cap">
+                    <div class="card-block little-profile text-center">
+                        <div class="pro-img" style="height:128px"><img ng-src="{{teacherInfo.headPortrait}}" alt="用户头像" /></div>
+                        <h3 class="m-b-0">{{teacherInfo.userName}}</h3>
+                        <p>{{teacherInfo.major}}</p>
+                        <p>{{teacherInfo.Pre}}</p>
+                    </div>
+                </div>                                
+            </div>
+            <div class="col-lg-8 col-xlg-9 col-md-7" >
+                <div class="cards" style="width: 600px;">
+                     <!-- Nav tabs -->
+                    <ul class="nav nav-tabs profile-tab" role="tablist" >
+                        <li class="nav-item active"> <a class="nav-link active" data-toggle="tab" href="#course"  target="_self" role="tab"> 教授课程</a></li>
+                        <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" target="_self" role="tab">联系方式</a></li> -->
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content" >
+                        <div class="tab-pane active" id="course" role="tabpanel" >
+                            <div class="card-block">
+                                <ul class="clearfix" style="width: auto;padding-left: 0px;padding-right: 0px;">
+                                    <div class="courseDiv"  style="width:100%;right:0px;left:0px;padding-right:-4px;">
+                                        <li class="courseli hvr-pulse-grow col-md-3 col-sm-3 col-xs-3 col-lg-3" style="margin-bottom: 10px"  ng-repeat="courseImg in courseImgs">
+                                        <a class="courseLink" target="_parent" ng-click="getCourseId({{courseImg.courseId}},{{courseImg.vncNotebook}})">
+                                            <div class="radius">
+                                                <div class="litop">
+                                                    <img ng-show="{{courseImg.hideShow == 1}}" class="coursePic" ng-src="{{courseImg.coursePicture}}">
+                                                </div>
+                                                <div class="libottom">
+                                                    <div class="libottomcon">
+                                                        <div class="libottomtit" ng-href="experimentalContent.html">{{courseImg.courseName}}
+                                                        </div>
+                                                        <div class="hourInfo">
+                                                            <span class="hour" style="float:left">
+                                                                <img ng-src="assets/img/avatars/expNum.png"><em style="color:#3f51b5"> {{courseImg.experienceNum}}</em></span>课时
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    
+                        <div class="tab-pane" id="settings" role="tabpanel">
+                            <div class="card-block">
+                                <form class="form-horizontal form-material">
+                                    <div class="form-group">
+                                        <label class="col-md-12">电话</label>
+                                         <div class="col-md-12">
+                                            <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">邮箱</label>
+                                        <div class="col-md-12">
+                                            <input type="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

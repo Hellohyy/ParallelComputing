@@ -1,0 +1,52 @@
+<div ng-controller="teacherListCtrl">
+<!-- 学生名单 -->
+    
+	<div class="well with-header with-footer">
+		<div class="header bordered-blueberry" style="font-size:20px;" >
+			<span class="teacherList" style="text-align: center">教师名单</span>
+			<button title="添加老师" style="font-size:20px;background-color: transparent;border:0px;float:right;margin-right: 50px;" ng-click="addTeacherButton()"><img src="assets/img/avatars/add_create_new_plus_positive_512px_1225528_easyicon.net.png" style="width:20px;height:20px;"></button>
+		</div>
+       
+		<!--/div-->
+		<!-- 已有班级信息 -->
+			<div class="module select" style="height:700px;overflow-y:scroll">
+		            <ul class="playground_lists" style="padding-left: 0px;">
+			            <div id="teacherListDiv">
+			            	<table width="100%" class="table" style="background-color:#F2F2F2; font-size:16px">
+			            		<style type="text/css">
+			            			a:link{color: black;}
+			            			a:visited{color: black}
+			            		</style>
+			            		<thead>
+			            			<tr>
+			            				<th style="text-align: center;">工号</th>
+			            				<th style="text-align: center;">姓名</th>
+			            				<th style="text-align: center;">职称</th>
+			            				<th style="text-align: center;">性别</th>
+			            				<th style="text-align: center;">学院</th>
+			            				<th style="text-align: center;">教授专业方向</th>
+			            			</tr>
+			            		</thead>
+			            		<tbody>
+			            			<tr  ng-repeat="teacher in teachers">
+			            				<td style="font-size: 14px;vertical-align:middle;text-align: center">{{teacher.userId}}</td>
+			            				<td style="font-size: 14px;vertical-align:middle;text-align: center">{{teacher.userName}}</td>
+			            				<td style="font-size: 14px;vertical-align:middle;text-align: center">{{teacher.titles}}</td>
+			            				<td style="font-size: 14px;vertical-align:middle;text-align: center">{{teacher.gender}}</td>
+			            				<td style="font-size: 14px;vertical-align:middle;text-align: center">{{teacher.apartment}}</td>
+			            				<td style="font-size: 14px;vertical-align:middle;text-align: center">{{teacher.major}}</td>
+			            				<td  style="font-size: 14px;vertical-align:middle"><button title="老师详情" class="btn" style="border: none; background-color: transparent;text-align: center" ng-click="chosingTeacherName(teacher.userId)">
+			            				<img ng-src="assets/img/avatars/select_details.png" style="width:15px;height:15px;margin-right:10%"><br>
+			            				</button></td>
+			            				<td  style="font-size: 14px;vertical-align:middle"><button title="删除老师" class="btn" style="border: none; background-color: transparent;text-align: center" ng-click="deleteTeacher(teacher.userId)">
+			            				<img ng-src="assets/img/avatars/delete.jpg" style="width:15px;height:15px;margin-right:10%"><br>
+			            				</button></td>
+			            			</tr>
+			            		</tbody>
+			            	</table>
+			            </div>
+		            </ul>
+		    </div>
+	</div>
+</div>
+

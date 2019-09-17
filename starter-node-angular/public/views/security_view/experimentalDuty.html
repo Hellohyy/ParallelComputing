@@ -1,0 +1,200 @@
+﻿<div ng-controller="experimentalDutyCtrl" ng-show="user_logout">
+<!-- 实验任务 -->
+	<div class="well with-header with-footer">
+		<div class="header bordered-blueberry">
+			<span ng-show="{{storage.authority==0}}">实验任务</span>
+			<!-- <div > -->
+			<span ng-show="{{storage.authority==1}} || {{storage.authority==2}}">教师课程</span>
+			<button class="addCourseButton" ng-show="{{storage.authority==1}}" title="添加课程"  ng-click="addCourseButton()"><img src="assets/img/avatars/add_create_new_plus_positive_512px_1225528_easyicon.net.png"></button>
+			<!-- </div> -->
+		</div>
+		<div ng-show="{{storage.authority==1}}" class="subject">
+			<div class="row subjectcon">
+				<ul class="clearfix">
+					<div id="courseDiv">
+						<li class="courseli hvr-pulse-grow col-md-3 col-sm-3 col-xs-3 col-lg-3" ng-repeat="courseImg in courseImgs">
+						<button id="hideDeleteButton" ng-show="{{storage.authority==1}}">
+							<img id="hideFlag" ng-src="{{courseImg.hideLogo}}" ng-click="hideCourse({{courseImg.courseId}})">
+							<img id="deleteFlag" ng-src="assets/img/avatars/delete.jpg" ng-click="deleteCourse({{courseImg.courseId}})">
+						</button>
+						
+							<a class="courseLink" target="_parent" ng-click="getCourseId(courseImg.courseId, courseImg.vncNotebook)">
+								<div class="radius">
+									<div class="litop">
+										<img ng-show="{{courseImg.hideShow == 1}}" class="coursePic" ng-src="{{courseImg.coursePicture}}">
+										<span ng-show="{{courseImg.hideShow == 0}}" style="font-size: 18px;color:gray">该课程已隐藏！</span>
+									</div>
+								</div>
+							</a>
+							<div class="libottom">
+								<div class="libottomcon">
+									<div class="libottomtit" ng-href="experimentalContent.html"><b>{{courseImg.courseName}}</b>
+									</div>
+									
+									<div class="hourInfo">
+                                        <span class="hour" style="float:left">
+                                        	<img ng-src="assets/img/avatars/expNum.png"><em style="color:#3f51b5" ng-init="courseImg.expNumber=0">{{courseImg.expNumber}}</em></span>课时
+                                        <span class="fr" style="float:right" ng-click="updCourse({{courseImg.courseId}})">
+                                        	<span class="per">
+                                        		<img ng-src="assets/img/avatars/edit-file.png"><strong>修改</strong>
+                                        		<!-- <strong> {{storage.userName}}老师</strong> -->
+                                        	</span>
+                                        </span>
+                                	</div>
+								</div>
+							</div>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 如果当前为学生，则仅仅能看到hideShow为1的课程 -->
+		<div ng-show="{{storage.authority==0}}" class="subject">
+			<div class="row subjectcon">
+				<ul class="clearfix">
+					<div id="courseDiv">
+						<li class="courseli hvr-pulse-grow col-md-3 col-sm-3 col-xs-3 col-lg-3" ng-repeat="stuCourseImg in stuCourseImgs">
+							<a class="courseLink" target="_parent" ng-click="getCourseId(stuCourseImg.courseId, stuCourseImg.vncNotebook)">
+								<div class="radius">
+									<div class="litop">
+										<img class="coursePic" ng-src="{{stuCourseImg.coursePicture}}">
+									</div>
+									<div class="libottom">
+										<div class="libottomcon">
+											<div class="libottomtit" ng-href="experimentalContent.html"><b>{{stuCourseImg.courseName}}</b>
+											</div>
+											<!-- <div class="libottomcontent">{{courseImg.courseIntro}}
+											</div> -->
+											<div class="hourInfo">
+		                                        <span class="hour" style="float:left">
+		                                        	<img ng-src="assets/img/avatars/expNum.png"><em style="color:#3f51b5" ng-init="stuCourseImg.expNumber=0"> {{stuCourseImg.expNumber}}</em></span>课时
+		                                        <span class="fr" style="float:right">
+		                                        	<span class="per">
+		                                        		<img ng-src="assets/img/avatars/User_512px_1178959_easyicon.net.png"><strong>{{stuCourseImg.currentTeacher}}老师</strong></span>
+		                                        </span>
+	                                    	</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+		<!-- 如果当前为教学管理员，则能看到hideShow为1的课程 -->
+		<div ng-show="{{storage.authority==2}}" class="subject">
+			<div class="row subjectcon">
+				<ul class="clearfix">
+					<div id="courseDiv">
+						<li class="courseli hvr-pulse-grow col-md-3 col-sm-3 col-xs-3 col-lg-3" ng-repeat="courseImg in courseImgs">
+						
+							<a class="courseLink" target="_parent" ng-click="getCourseId(courseImg.courseId, courseImg.vncNotebook)">
+								<div class="radius">
+									<div class="litop">
+										<img ng-show="{{courseImg.hideShow == 1}}" class="coursePic" ng-src="{{courseImg.coursePicture}}">
+										
+									</div>
+									<div class="libottom">
+										<div class="libottomcon">
+											<div class="libottomtit" ng-href="experimentalContent.html"><b>{{courseImg.courseName}}</b>
+											</div>
+											
+											<div class="hourInfo">
+		                                        <span class="hour" style="float:left">
+		                                        	<img ng-src="assets/img/avatars/expNum.png"><em style="color:#3f51b5" ng-init="courseImg.expNumber=0"> {{courseImg.expNumber}}</em></span>课时
+		                                        <span class="fr" style="float:right">
+		                                        	<span class="per">
+		                                        		<img ng-src="assets/img/avatars/User_512px_1178959_easyicon.net.png"><strong>{{courseImg.currentTeacher}}老师</strong></span>
+		                                        </span>
+	                                    	</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+		<!-- 设置隐藏/显示按钮成功提示框设置 -->
+		<div class="modal hide" id="updateCouHideShowModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程设置
+						</h4>
+						<!-- /*<hr style="border-top:1px ridge #e75b8d;">*/ -->
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">课程设置成功！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 设置隐藏/显示按钮失败提示框 -->
+		<div class="modal hide" id="updateCouHideShowFail" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程设置
+						</h4>
+						
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">课程设置失败！</span>
+						</label>
+					</div>
+					<div class="modal-footer">						
+						<button id="closeAlert" type="button" class="btn closeAlert" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 设置confirm确定与取消按钮提示框 -->
+		<div class="modal hide" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeConfirm()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程设置
+						</h4>
+						
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">确定执行该操作？</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="confirmButton" type="button" class="btn" ng-click="confirmDel()"> 确 定 </button>
+						<button id="denyButton" type="button" class="btn" data-dismiss="modal" ng-click="closeConfirm()"> 取 消 </button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+

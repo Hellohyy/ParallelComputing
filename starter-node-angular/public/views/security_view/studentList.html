@@ -1,0 +1,314 @@
+<div ng-controller="studentListCtrl" ng-show="user_logout">
+<!-- 实验任务 -->
+	<div id="studentList" class="well with-header with-footer" style="overflow-y:scroll">
+		
+		<div class="studentListFirstDiv col-xs-12 col-md-12 col-lg-12" style="min-width: 930px">
+			<div class="raw img-scroll" id="listTabBox">
+				<!-- 使用z-index使按钮居于最上层 -->
+				<!-- 向左翻页按钮 -->
+					<img class="prev" ng-src="assets/img/avatars/arrow_left_512px_1175301_easyicon.net.png">
+					<!-- 向右翻页按钮 -->
+					<img class="next" ng-src="assets/img/avatars/arrow_right_512px_1175302_easyicon.net.png">				
+				<div class="img-list">
+					<ul id="listOption">
+						<li ng-repeat="courseName in courseNames" class="select">
+							<img class="selectCourse" id="{{courseName.courseId}}" ng-src="{{courseName.coursePicture}}" ng-model="currentCourseId">
+						</li>
+					</ul>
+				</div>
+				<!-- 课程名称的显示 -->
+				
+			</div>
+			<div id="currentCourseDiv" class="title clearfix">
+				<h2 class="fl">
+					<span class="name">{{currentName}}</span>
+					<span id="currentCourseIntro">{{currentIntro}}</span>
+				</h2>
+			</div>
+		</div><br>
+		<div class="studentListButtons" style="">
+			<div class="listButton">
+				<span style="">学生名单</span>
+				<div id="threeButtons">
+					<button id="www" data-toggle="modal" data-target="#addNewStudent">
+						+ 新增学生
+					</button>
+					<button ng-click="deleteStudent()">
+						- 删除
+					</button>
+					<button data-toggle="modal" data-target="#addNewClass">
+						+ 新增班级
+					</button>
+				</div>
+			</div>
+			<div class="studentListButtons">
+				<hr>
+			</div>
+		</div>
+		<!-- 班级信息及学生信息 -->
+		<div id="classStuInfo" class="col-xs-12 col-md-12 col-lg-12">
+
+			<!-- 复选框设置-->
+			<!-- 双层ng-repeat -->
+			<div ng-repeat="informationStudent in informationStudents">
+				<!-- 不加label标签复选框功能无法实现 -->
+				<div>
+				<label class="className"  value="{{informationStudent[0].classID}}">
+					<input class="class" type="checkbox" value="{{informationStudent[0].classId}}" style="" name="{{informationStudent[0].classId}}">
+					<span class="text" style="">
+					<img ng-src="assets/img/avatars/schoolclass_374.4225px_1147009_easyicon.net.png" style="vertical-align: top"> {{informationStudent[0].classname}}
+					</span><br>
+				</label>
+				</div>
+				<div class="stuInformation" ng-repeat="stuName in informationStudent track by $index" style="">
+					<label class="studentName" style="" value="{{stuName.studentId}}">
+						<input class="student" type="checkbox" name="{{stuName.studentId}}" value="{{stuName.studentId}}">
+						<span class="text" style=""><img ng-src="assets/img/avatars/student.png" style="width:20px;height:20px;vertical-align: top"> {{stuName.studentNames}}</span>
+					</label>
+				</div>
+				<hr style="">
+			</div>
+		</div>
+		<!-- 单独添加的学生名单，不是以班为单位增加的学生 -->
+		<!-- <div ng-repeat="couClaStudent in couClaStudents">
+			<label class="studentAloneName" value="{{couClaStudent.studentId}}">
+				<input class="studentAlone" type="checkbox">
+				<span class="text">{{couClaStudent.studentId}}</span>
+			</label>
+		</div> -->
+		
+		<!-- 模态框：新增班级模态框 -->
+		<div class="modal fade" id="addNewClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hiden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							选择班级
+						</h4>
+					</div>
+					<div id="classAddBody" class="modal-body" style="">
+						<label class="checkbox"  value="{{classInformation.classID}}" ng-repeat="classInformation in classesInformation">
+							<input class="classID" type="checkbox" name="checkbox">
+							<span class="text">{{classInformation.classname}}</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="confirmButton" type="button" class="btn" ng-click="addNewClass()">确认添加</button>
+						<button id="denyButton" type="button" class="btn" data-dismiss="modal">取消添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 模态框：新增学生模态框 -->
+		<div class="modal fade" id="addNewStudent" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"> 
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered" >
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hiden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							选择学生
+						</h4>
+					</div>
+					<div id="classAddBody" class="modal-body">
+						<label class="checkbox row" value="{{allStudent.userId}}" ng-repeat="allStudent in allStudents">
+							<input class="selectedStudent" type="checkbox" name="checkbox">
+							<span id="allStudents" class="text">{{allStudent.classname}} : 
+								<span class="text" style="">
+									<img ng-src="assets/img/avatars/student.png" style="">{{allStudent.userName}}
+								</span>
+							</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="confirmButton" type="button" class="btn" ng-click="addNewStudent()">确认添加</button>
+						<button id="denyButton" type="button" class="btn" data-dismiss="modal">取消添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 设置课程下没有班级信息提示框设置 -->
+		<div class="modal hide" id="courseClassAlertModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程-班级-学生
+						</h4>
+						<!-- /*<hr style="border-top:1px ridge #e75b8d;">*/ -->
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">该课程暂未有班级信息！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 公选课不能同时删除所有学生，会弹出提示框 -->
+		<div class="modal hide" id="courseClassDelModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程-班级-学生
+						</h4>
+						<!-- /*<hr style="border-top:1px ridge #e75b8d;">*/ -->
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">公选课的学生不能进行统一删除操作,请针对特定学生进行删除！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--没有选择学生或班级就点击删除，会弹出提示框 -->
+		<div class="modal hide" id="courseClassNoneDelModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程-班级-学生
+						</h4>
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">未选择需要删除的班级或学生，请选择！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 未选择学生就点击添加学生 -->
+		<div class="modal hide" id="noStudentAlert" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程-班级-学生
+						</h4>
+						<!-- /*<hr style="border-top:1px ridge #e75b8d;">*/ -->
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">未选择学生，请重新设置！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 是否确定删除课程下的班级 -->
+		<!-- 设置confirm确定与取消按钮提示框 -->
+		<div class="modal hide" id="confirmCouClaModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeConfirm()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							课程设置
+						</h4>
+						
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">确定执行该操作？</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="confirmButton" type="button" class="btn" ng-click="confirmCouClaDel()">确 定</button>
+						<button id="denyButton" type="button" class="btn" data-dismiss="modal" ng-click="closeConfirm()">取 消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 成功提示框设置 -->
+		<div class="modal hide" id="addClaStuModal" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							班级/学生添加
+						</h4>
+						<!-- /*<hr style="border-top:1px ridge #e75b8d;">*/ -->
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">班级/学生添加成功！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 失败提示框 -->
+		<div class="modal hide" id="addClaStuFail" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bordered">
+					<!-- 模态框取消按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">
+							&times;
+						</button>
+						<h4 class="modal-title" id="">
+							班级/学生添加
+						</h4>
+						
+					</div>
+					<div class="modal-body">
+						<label>
+							<span class="text">班级/学生添加失败！</span>
+						</label>
+					</div>
+					<div class="modal-footer">
+						
+						<button id="closeAlert" type="button" class="btn" data-dismiss="modal" ng-click="closeModal()">关 闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

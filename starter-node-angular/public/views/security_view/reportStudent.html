@@ -1,0 +1,49 @@
+<div ng-controller="reportStudentCtrl" ng-show="user_logout">
+	<div class="wrap">
+		<div class="banner_wrap col-md-12 col-xs-12 col-lg-12">
+			<!-- <canvas id="nokey" style="width:1384px;height:200px"></canvas> -->
+			<div class="area">
+				<div class="banner clearfix">
+					<div class="img_area fl col-md-4 col-xs-4 col-lg-4">
+						<img class="col-md-12 col-xs-12 col-lg-12" ng-src={{expInfo.coursePicture}} alt="" style="padding-left:0px;margin-top:15px;margin-bottom:15px">
+					</div>
+					<div class="center course_infos fl col-md-7 col-xs-7 col-lg-7">
+						<div class="title clearfix">
+							<h2 class="fl">
+								<span class="name">{{expInfo.courseName}}</span>
+								<span style="font-size:16px;font-weight:normal;margin-top:10px;color:#666">{{expInfo.expName}}</span>
+							</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 当前为教师端的实验显示内容 -->
+		<div class="playground_wrap area">
+		<!-- 选项卡设置：已学过人数、全部模块 -->
+			<div class="tab_switch" id="tabBox1">
+                <ol class="clearfix" id="option1">
+                    <li class="select">全部</li>
+                </ol>
+                <!-- 全部课件模块 -->
+                <div class="module select">
+		            <ul class="playground_lists">
+			            <div id="expDiv">
+			            	<li class="playground clearfix" ng-repeat="stu in student">
+			            	<div class="col-md-10 col-xs-10 col-lg-10">
+			            		<a class="clearfix" ng-click="getReport({{stu.stuId}})">
+			            			<div class="fl title" style="height:100px">
+			            				<h3>学生:{{stu.stuId}}</h3>
+			            			</div>
+			            		</a>
+			            	</div>
+			            	</li>
+			            </div>
+		            </ul>
+		        </div>
+            </div>
+		</div>
+	</div>
+</div>
+
+

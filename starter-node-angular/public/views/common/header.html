@@ -1,0 +1,55 @@
+﻿<div class="navbar-inner page-header position-relative" style="height:70px;background-color:#37474f">
+    <div class="navbar-container">
+        <!-- 左侧 -->
+        <div class="navbar-header pull-left" style="margin-top:20px;display:table">
+            <img ng-src="assets/img/avatars/artificial_intelligence_783px_1219959_easyicon.net.png" style="height:40px;width:40px;">
+            <!-- <a href="#" class="navbar-brand"> -->
+            <span ng-show="{{storage.authority}} == 0" style="display:table-cell;vertical-align:middle;color:white;font-size:30px;letter-spacing:3px;">
+                人工智能实验云平台（学习系统）
+            </span>
+            <span ng-show="{{storage.authority}} == 1" style="display:table-cell;vertical-align:middle;color:white;font-size:30px;letter-spacing:3px;">
+                人工智能实验云平台（教学系统）
+            </span>
+            <span ng-show="{{storage.authority}} == 2" style="display:table-cell;vertical-align:middle;color:white;font-size:30px;letter-spacing:3px;">
+                人工智能实验云平台（管理系统）
+            </span>
+            <!-- </a> -->
+        </div>
+        
+        <!-- 右侧 -->
+        <div class="navbar-header pull-right">
+            <div class="navbar-account">
+                <ul class="account-area" style="margin-top: 5px">
+                    <li>
+                        <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                            <div class="avatar" title="View your public profile">
+                                <img ng-src="{{storage.headPortrait}}" style="height:40px;width:40px;margin-top:5px;background-color: white;border-radius: 20px">
+                            </div>
+                            <section>
+                                <h2><span class="profile"><span style="margin-top:10px"> {{storage.userName}}</span></span></h2>
+                            </section>
+                        </a>
+                        <!--Login Area Dropdown-->
+                        <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                            <li class="username">
+                                <a>{{storage.id}}</a>
+                            </li>
+                            <a  href="">
+                                <li class="dropContent dropdown-footer" ng-click="modifyPassword()">
+                                    修改密码 
+                                </li>
+                            </a>
+                            <a href="">
+                                <li class="dropContent dropdown-footer" ng-click="logout()">
+                                    退出
+                                </li>
+                            </a>
+                        </ul>
+                        <!--/Login Area Dropdown-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /Account Area and Settings -->
+    </div>
+</div>

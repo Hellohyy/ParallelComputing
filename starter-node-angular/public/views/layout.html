@@ -1,0 +1,30 @@
+﻿<!-- Loading Container -->
+<div class="loading-container" data-ng-include=" 'views/partials/loading.html' "></div>
+<!--  /Loading Container -->
+
+<!-- Navbar -->
+<div class="navbar {{settings.fixed.navbar ? 'navbar-fixed-top' : ''}}" data-ng-include=" 'views/common/header.html' "></div>
+<!-- /Navbar -->
+
+<div class="main-container container-fluid">
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div class="page-sidebar {{settings.fixed.sidebar ? 'sidebar-fixed' : ''}}" id="sidebar" data-ng-include=" 'views/common/sidebar.html' ">
+        </div>
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Navbar -->
+            <!-- <div class="row" data-ng-include=" 'views/common/navbar.html' "></div> -->
+            <!-- /Navbar -->
+            <div class="page-body" ui-view >
+                <!-- Your Content Goes Here -->
+            </div>
+        </div>
+        <!-- /Page Content -->
+    </div>
+    <!-- /Page Container -->
+    <!-- Main Container -->
+
+</div>

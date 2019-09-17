@@ -1,0 +1,28 @@
+<div ng-controller="reportManageCtrl">
+    <div class="well with-header with-footer col-md-12 col-lg-12 col-xs-12">
+        <div class="header bordered-blueberry">
+        实验报告
+        </div>
+        <div >
+            <table class="records col-xs-12 col-md-12 col-lg-12">
+                <tbody class="recordHead">
+                    <tr>
+                        <th>课程名称</th>
+                        <th>实验名称</th>
+                        <th>学生用户</th>
+                        <th>提交状态</th>
+                        <th>报告详情</th>
+                    </tr>
+                    <tr class="recordContent" ng-repeat="reportInfo in reportInfos">
+                        <td>{{reportInfo.courseName}}</td>
+                        <td>{{reportInfo.experienceName}}</td>
+                        <td>{{reportInfo.stuName}}</td>
+                        <td ng-show="reportInfo.status==1">已提交</td>
+                        <td ng-show="reportInfo.status==0">未提交</td>
+                        <td><a ng-click="report_det({{reportInfo}})">查看详情</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
