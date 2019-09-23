@@ -1,8 +1,0 @@
-﻿  main.cpp
-c:\users\haoyuan\documents\visual studio 2015\projects\frameparser2\frameparser2\main.cpp(105): warning C4101: “frr”: 未引用的局部变量
-c:\users\haoyuan\documents\visual studio 2015\projects\frameparser2\frameparser2\main.cpp(134): warning C4244: “初始化”: 从“std::streamoff”转换到“long”，可能丢失数据
-c:\users\haoyuan\documents\visual studio 2015\projects\frameparser2\frameparser2\main.cpp(152): warning C4244: “初始化”: 从“std::streamsize”转换到“int”，可能丢失数据
-c:\users\haoyuan\documents\visual studio 2015\projects\frameparser2\frameparser2\main.cpp(155): warning C4244: “=”: 从“std::streamoff”转换到“int”，可能丢失数据
-c:\users\haoyuan\documents\visual studio 2015\projects\frameparser2\frameparser2\main.cpp(219): warning C4244: “初始化”: 从“std::streamoff”转换到“long”，可能丢失数据
-  frameparser2.vcxproj -> C:\Users\haoyuan\Documents\Visual Studio 2015\Projects\frameparser2\Debug\frameparser2.exe
-  frameparser2.vcxproj -> C:\Users\haoyuan\Documents\Visual Studio 2015\Projects\frameparser2\Debug\frameparser2.pdb (Full PDB)
