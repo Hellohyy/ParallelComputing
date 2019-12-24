@@ -1,4 +1,4 @@
-git init
+﻿git init
 git remote add origin 仓库
 git pull --rebase origin master 
 git add
@@ -6,3 +6,4 @@ git commit
 git push -u origin master 
 
 git rm 文件
+ ssh-keygen -t rsa -b 4096
