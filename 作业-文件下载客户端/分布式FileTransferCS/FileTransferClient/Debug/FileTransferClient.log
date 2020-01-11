@@ -1,0 +1,10 @@
+﻿  stdafx.cpp
+d:\vs2015\vc\atlmfc\include\afx.h(38): warning C4996: 'MBCS_Support_Deprecated_In_MFC': MBCS support in MFC is deprecated and may be removed in a future version of MFC.
+  d:\vs2015\vc\atlmfc\include\afx.h(33): note: 参见“MBCS_Support_Deprecated_In_MFC”的声明
+  TransferClient.cpp
+  FileTransferClientDlg.cpp
+  FileTransferClient.cpp
+  正在生成代码...
+  Message.cpp
+  FileTransferClient.vcxproj -> D:\201920085211012-周浩源-PRJ08-20191118\UDPFileTransferCS\Debug\FileTransferClient.exe
+  FileTransferClient.vcxproj -> D:\201920085211012-周浩源-PRJ08-20191118\UDPFileTransferCS\Debug\FileTransferClient.pdb (Full PDB)

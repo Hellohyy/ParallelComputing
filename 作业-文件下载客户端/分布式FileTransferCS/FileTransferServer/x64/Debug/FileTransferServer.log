@@ -1,0 +1,23 @@
+﻿  Message.cpp
+  FileTransferServer.cpp
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\common.h(107): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.h(21): warning C4005: “MAX_PATH”: 宏重定义
+  c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(60): note: 参见“MAX_PATH”的前一个定义
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(263): warning C4244: “=”: 从“std::streamoff”转换到“int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(282): warning C4267: “参数”: 从“size_t”转换到“unsigned int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(326): warning C4244: “=”: 从“std::streamoff”转换到“int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(378): warning C4244: “=”: 从“std::streamoff”转换到“int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(396): warning C4267: “参数”: 从“size_t”转换到“unsigned int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(441): warning C4244: “=”: 从“std::streamoff”转换到“int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(512): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(524): warning C4244: “=”: 从“intptr_t”转换到“long”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.cpp(551): warning C4244: “=”: 从“intptr_t”转换到“long”，可能丢失数据
+  FileServer.cpp
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\common.h(107): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\filetransferserver.h(21): warning C4005: “MAX_PATH”: 宏重定义
+  c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(60): note: 参见“MAX_PATH”的前一个定义
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferserver\fileserver.cpp(8): warning C4273: “getcwd”: dll 链接不一致
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\direct.h(91): note: 参见“getcwd”的前一个定义
+  正在生成代码...
+  FileTransferServer.vcxproj -> D:\201920085211012-周浩源-PRJ08-20191118\UDPFileTransferCS\x64\Debug\FileTransferServer.exe
+  FileTransferServer.vcxproj -> D:\201920085211012-周浩源-PRJ08-20191118\UDPFileTransferCS\x64\Debug\FileTransferServer.pdb (Full PDB)

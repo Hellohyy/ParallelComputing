@@ -1,0 +1,18 @@
+﻿  stdafx.cpp
+d:\vs2015\vc\atlmfc\include\afx.h(38): warning C4996: 'MBCS_Support_Deprecated_In_MFC': MBCS support in MFC is deprecated and may be removed in a future version of MFC.
+  d:\vs2015\vc\atlmfc\include\afx.h(33): note: 参见“MBCS_Support_Deprecated_In_MFC”的声明
+  TransferClient.cpp
+d:\vs2015\vc\atlmfc\include\afx.h(38): warning C4996: 'MBCS_Support_Deprecated_In_MFC': MBCS support in MFC is deprecated and may be removed in a future version of MFC.
+  d:\vs2015\vc\atlmfc\include\afx.h(33): note: 参见“MBCS_Support_Deprecated_In_MFC”的声明
+  Message.cpp
+  FileTransferClientDlg.cpp
+d:\vs2015\vc\atlmfc\include\afx.h(38): warning C4996: 'MBCS_Support_Deprecated_In_MFC': MBCS support in MFC is deprecated and may be removed in a future version of MFC.
+  d:\vs2015\vc\atlmfc\include\afx.h(33): note: 参见“MBCS_Support_Deprecated_In_MFC”的声明
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferclient\filetransferclientdlg.cpp(499): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+d:\201920085211012-周浩源-prj08-20191118\udpfiletransfercs\filetransferclient\filetransferclientdlg.cpp(511): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  FileTransferClient.cpp
+d:\vs2015\vc\atlmfc\include\afx.h(38): warning C4996: 'MBCS_Support_Deprecated_In_MFC': MBCS support in MFC is deprecated and may be removed in a future version of MFC.
+  d:\vs2015\vc\atlmfc\include\afx.h(33): note: 参见“MBCS_Support_Deprecated_In_MFC”的声明
+  正在生成代码...
+  FileTransferClient.vcxproj -> D:\201920085211012-周浩源-PRJ08-20191118\UDPFileTransferCS\x64\Debug\FileTransferClient.exe
+  FileTransferClient.vcxproj -> D:\201920085211012-周浩源-PRJ08-20191118\UDPFileTransferCS\x64\Debug\FileTransferClient.pdb (Full PDB)

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Common">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>COMMON.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFileTransferClientApp">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>FileTransferClient.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CFileTransferClientDlg">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="CFileTransferClientDlg::__unnamed_enum_0306_1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>FileTransferClientDlg.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>FISBAAECDGAEBgQIQBAJMRAAAIICAoQEEAAQAIAQCAA=</HashCode>
+      <FileName>FileTransferClientDlg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CBlockingSocket">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAQFCEAAEABEACAAAgAIEQSEIBAIAAAQAEAgA=</HashCode>
+      <FileName>TransferClient.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
